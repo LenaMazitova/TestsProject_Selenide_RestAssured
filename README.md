@@ -1,8 +1,9 @@
 ## Тестовые задания: UI-тестирование с использованием Selenide и API-тесты с использованием RestAssured (JUnit5 и Allure)
   
-Для запуска тестов и формирования allure-отчета:  
-mvn clean test allure:report  
-Для просмотра отчета в браузере: target/site/allure-maven-plugin/index.html
+Для запуска тестов в контейнере Testcontainers (кроме теста, где проверяется размер скачанного файла):  
+1) убедитесь, что запущен Docker Desktop,  
+2) выполните команду в терминале (чтобы disable тест был пропущен):  
+mvn test -Dskip.test=true
   
 ### UI-тесты с использованием Selenide, JUnit5: 
   
