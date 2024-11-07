@@ -1,4 +1,4 @@
-package reqres_api.models;
+package reqresApi.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
