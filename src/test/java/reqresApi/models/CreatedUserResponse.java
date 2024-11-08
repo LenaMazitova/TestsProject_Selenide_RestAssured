@@ -1,13 +1,15 @@
-package reqres_api.models;
+package reqresApi.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 @Getter
-@NoArgsConstructor(force = true)
 @AllArgsConstructor
-public class UpdatedUserResponse {
+@NoArgsConstructor(force = true)
+public class CreatedUserResponse {
     private final String name;
     private final String job;
-    private final String updatedAt;
+    private final String id;
+    private final String createdAt;
 }
