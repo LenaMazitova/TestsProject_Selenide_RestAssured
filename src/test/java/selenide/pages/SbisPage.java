@@ -4,6 +4,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.visible;
@@ -19,9 +20,9 @@ public class SbisPage {
     private final SelenideElement downloadLocalVersions = $x("//a[@href='/download']");
     private final SelenideElement dialog =
             $x("//span[contains(@class, 'Chat clientWidget-Button__icon_inverted')]");
-    private final ElementsCollection dialogFormFields = $$x("//input[@name='ws-input_2024-11-07']");
+    public final ElementsCollection dialogFormFields = $$x("//div[@data-qa='controls-Render__field']/input");
     private final SelenideElement tick = $x("//*[@x='3' and @width='6']");
-    private final SelenideElement fieldTextInput =
+    public final SelenideElement fieldTextInput =
             $x("//textarea[contains(@class, 'Field controls-InputBase')]");
 
 
@@ -59,32 +60,35 @@ public class SbisPage {
 
     @Step("В форму для диалога вводим имя: {name}")
     public void enterName(String name) {
-        dialogFormFields.get(0)
-                .shouldBe(visible)
-                .shouldBe(enabled)
-                .click();
-        dialogFormFields.get(0)
-                .setValue(name);
+        SelenideElement element = dialogFormFields.get(0);
+        element.shouldBe(enabled).click();
+        if (!element.getValue().isEmpty()) {
+            element.clear();
+            element.click();
+        }
+        element.setValue(name);
     }
 
     @Step("В форму для диалога вводим телефон: {phone}")
     public void enterPhone(String phone) {
-        dialogFormFields.get(1)
-                .shouldBe(visible)
-                .shouldBe(enabled)
-                .click();
-        dialogFormFields.get(1)
-                .setValue(phone);
+        SelenideElement element = dialogFormFields.get(1);
+        element.shouldBe(enabled).click();
+        if (!element.getValue().isEmpty()) {
+            element.sendKeys(Keys.CONTROL+"a");
+            element.sendKeys(Keys.BACK_SPACE);
+        }
+        element.setValue(phone);
     }
 
     @Step("В форму для диалога вводим название компании: {companyName}")
     public void enterCompanyName(String companyName) {
-        dialogFormFields.get(2)
-                .shouldBe(visible)
-                .shouldBe(enabled)
-                .click();
-        dialogFormFields.get(2)
-                .setValue(companyName);
+        SelenideElement element = dialogFormFields.get(2);
+        element.shouldBe(enabled).click();
+        if (!element.getValue().isEmpty()) {
+            element.clear();
+            element.click();
+        }
+        element.setValue(companyName);
     }
 
     @Step("Нажимаем галочку для согласия на обработку введенных данных")
@@ -98,7 +102,11 @@ public class SbisPage {
     @Step("Вводим текст сообщения {text} и отправляем")
     public void sendMessage(String text) {
         fieldTextInput.click();
-        fieldTextInput.setValue("Здравствуйте");
+        if (!fieldTextInput.getValue().isEmpty()) {
+            fieldTextInput.clear();
+            fieldTextInput.click();
+        }
+        fieldTextInput.setValue(text);
 //                .pressEnter();
     }
 
