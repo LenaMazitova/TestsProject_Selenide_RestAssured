@@ -73,10 +73,10 @@ public class SbisPage {
     public void enterPhone(String phone) {
         SelenideElement element = dialogFormFields.get(1);
         element.shouldBe(enabled).click();
-        if (!element.getValue().isEmpty()) {
-            element.sendKeys(Keys.CONTROL+"a");
-            element.sendKeys(Keys.BACK_SPACE);
-        }
+        
+        element.sendKeys(Keys.CONTROL+"a");
+        element.sendKeys(Keys.BACK_SPACE);
+        
         element.setValue(phone);
     }
 
