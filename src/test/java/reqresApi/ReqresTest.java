@@ -13,7 +13,6 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
 
-@Tag("API")
 @ExtendWith(TestListener.class)
 @Feature("API-тестирование")
 @Epic("Тестирование эндпоинтов сайта reqres.in")
