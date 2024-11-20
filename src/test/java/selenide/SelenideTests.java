@@ -25,7 +25,6 @@ import static com.codeborne.selenide.Selenide.switchTo;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-@Tag("UI")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith({TextReportExtension.class, ScreenShooterExtension.class}) // Для табличных консольных логов
 @Feature("UI-тестирование")
